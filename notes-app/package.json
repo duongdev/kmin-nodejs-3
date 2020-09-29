@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/duongdev/kmin-nodejs-3#readme",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
