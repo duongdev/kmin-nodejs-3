@@ -1,14 +1,1 @@
-[
-  {
-    "title": "Note title",
-    "body": "Note details"
-  },
-  {
-    "title": "Note 2",
-    "body": "Note details"
-  },
-  {
-    "title": "Note 3",
-    "body": "Note 3 details"
-  }
-]
+[{"title":"Note 1","body":"Content ne"},{"title":"Note 2","body":"Content day ne"},{"title":"Note 3","body":"Content day ne"}]
