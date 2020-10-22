@@ -1,0 +1,22 @@
+<h1>Weather App</h1>
+
+<form style="display: flex">
+  <input name="searchText" placeholder="Search location..." value="{{searchText}}" />
+  <button type="submit">Search</button>
+</form>
+
+{{#if searchText}}
+<p>Searching locations for: <b>{{searchText}}</b></p>
+{{/if}}
+
+{{#if error}}
+<p>Error: {{error}}</p>
+{{/if}}
+
+{{#if locations}}
+<ul class="location_list">
+  {{#each locations}}
+  <li><a href="/forecast/{{this.woeid}}">{{this.title}}</a></li>
+  {{/each}}
+</ul>
+{{/if}}

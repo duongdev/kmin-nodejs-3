@@ -4,12 +4,17 @@
   "description": "",
   "main": "weather.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }

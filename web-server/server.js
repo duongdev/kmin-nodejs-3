@@ -23,7 +23,7 @@ const renderNavBar = (path, navItems) => {
 
   navItems.forEach((navItem) => {
     if (navItem.path === path) {
-      navBar += `<li><i>${navItem.title}</i></li>`;
+      navBar += `<li><b>${navItem.title}</b></li>`;
     } else {
       navBar += `<li><a href="${navItem.path}">${navItem.title}</a></li>`;
     }
