@@ -5,7 +5,7 @@ const searchLocations = (query, callback) => {
     `https://www.metaweather.com/api/location/search/?query=${query}`,
     { json: true },
     function (error, response, body) {
-      if (body.length === 0) {
+      if (!body || body.length === 0) {
         callback(`No locations found for "${query}"`, undefined);
         return;
       }
