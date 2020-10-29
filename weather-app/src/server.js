@@ -1,14 +1,27 @@
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const path = require("path");
-const { searchLocations } = require("./weather");
+const { searchLocations, getLocationWeather } = require("./weather");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.engine("handlebars", expressHandlebars());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "handlebars");
+
+app.get("/forecast/:woeid", (req, res) => {
+  const woeid = req.params.woeid;
+
+  getLocationWeather(woeid, (error, locationWeather) => {
+    if (error) {
+      res.render("error", { errorMessage: error });
+      return;
+    }
+
+    res.render("forecast", locationWeather);
+  });
+});
 
 app.get("/", (req, res) => {
   const searchText = req.query.searchText;

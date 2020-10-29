@@ -1,0 +1,17 @@
+<title>{{locationName}}</title>
+
+<h1>{{locationName}}</h1>
+
+<div style="display: flex; margin: -4px">
+  {{#each weathers}}
+  <div
+    style="flex: 1; text-align: center; padding: 8px; margin: 4px; border-radius: 8px;box-shadow: 0 8px 60px 0 rgba(103, 151, 255, .11), 0 12px 90px 0 rgba(103, 151, 255, .11);">
+    <strong>{{this.date}}</strong>
+
+    <img width="75%" src="https://www.metaweather.com/static/img/weather/{{this.weatherStateAbbr}}.svg" />
+
+    <div>{{this.weatherStateName}}</div>
+    <div>{{this.minTemp}} – {{this.maxTemp}}</div>
+  </div>
+  {{/each}}
+</div>

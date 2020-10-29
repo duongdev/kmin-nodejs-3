@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "install": "cd weather-app && npm i",
+    "start": "node weather-app/src/server.js"
+  }
+}
