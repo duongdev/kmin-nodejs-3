@@ -30,14 +30,14 @@
 
 ## Task
 
-- ID
+<!-- - ID -->
 - Title
 - Body
-- Created Date
-- Due Date
-- Created By
-- Assigned To
-- Priority: Low | Medium | High
+<!-- - Created Date -->
+<!-- - Due Date -->
+<!-- - Created By -->
+<!-- - Assigned To -->
+<!-- - Priority: Low | Medium | High -->
 
 ## Category/group/folder
 
