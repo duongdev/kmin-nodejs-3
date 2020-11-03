@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "install": "cd weather-app && npm i",
-    "start": "node weather-app/src/server.js"
+    "install": "cd todolist-app && npm i",
+    "start": "node todolist-app/src/server.js"
   }
 }

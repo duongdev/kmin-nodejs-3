@@ -1,9 +1,11 @@
 # Features
 
-- [ ] Thêm/xoá/sửa task
+- [ ] Thêm task
 - [ ] List tasks
-- [ ] Đăng ký/đăng nhập
-- [ ] Categorize
+- [ ] Edit task
+- [ ] Delete task
+- [ ] Đăng ký/đăng nhập user
+- [ ] Categorize tasks
 - [ ] Sort tasks: Priority, Due date, Title
 - [ ] Search tasks: Title
 
