@@ -7,7 +7,7 @@ function getAllTasks() {
 }
 
 function createTask({ title, body }) {
-  const task = Task.create({ title, body });
+  const task = Task.create({ title, body, completed: false });
 
   return task;
 }

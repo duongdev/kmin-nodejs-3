@@ -14,6 +14,11 @@ app
   .route("/tasks")
   .post((req, res) => {
     const { title, body } = req.body;
+
+    if (!title) {
+      return res.status(400).json({ message: "title is required" });
+    }
+
     const createdTask = createTask({ title, body });
     res.json(createdTask);
   })
