@@ -30,14 +30,22 @@
 
 ## Task
 
+1. Create task without `completed` & `completedAt`; `completed` defaults to `false`. `completedAt` defaults to `null`.
+2. Update a task `PATCH /tasks/:taskId`: `title`, `body`, `completed`
+3. If `completed` is updated from `false` to `true`, set `completedAt` to current time. Otherwise, set `completedAt` to `null`.
+4. Delete a task: `DELETE /tasks/:taskId`
+
 <!-- - ID -->
+
 - Title
 - Body
-<!-- - Created Date -->
-<!-- - Due Date -->
-<!-- - Created By -->
-<!-- - Assigned To -->
-<!-- - Priority: Low | Medium | High -->
+- Completed
+- Completed At
+  <!-- - Created Date -->
+  <!-- - Due Date -->
+  <!-- - Created By -->
+  <!-- - Assigned To -->
+  <!-- - Priority: Low | Medium | High -->
 
 ## Category/group/folder
 
