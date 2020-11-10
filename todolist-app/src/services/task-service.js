@@ -1,19 +1,25 @@
 const { createModel } = require("../helpers/model");
+const Task = require("../models/Task");
 
-const Task = createModel("tasks");
+const TaskJSONDB = createModel("tasks");
 
 function getAllTasks() {
-  return Task.findAll();
+  return TaskJSONDB.findAll();
 }
 
-function createTask({ title, body }) {
-  const task = Task.create({ title, body, completed: false });
-
-  return task;
+function createTask({ title, body }, callback) {
+  Task.create(
+    {
+      title,
+      body,
+      completed: false,
+    },
+    (err, task) => callback(err, task)
+  );
 }
 
 function findTaskById(taskId) {
-  return Task.findById(taskId);
+  return TaskJSONDB.findById(taskId);
 }
 
 module.exports = { createTask, getAllTasks, findTaskById };

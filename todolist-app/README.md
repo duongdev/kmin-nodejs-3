@@ -1,9 +1,9 @@
 # Features
 
-- [ ] Thêm task
-- [ ] List tasks
-- [ ] Edit task
-- [ ] Delete task
+- [x] Thêm task
+- [x] List tasks
+- [x] Edit task
+- [x] Delete task
 - [ ] Đăng ký/đăng nhập user
 - [ ] Categorize tasks
 - [ ] Sort tasks: Priority, Due date, Title
@@ -53,3 +53,16 @@
 - Name
 - Created By
 - Created Date
+
+
+# MongoDB
+
+NoSQL database
+
+Database => todo-app
+
+Table -> Collection => Tasks, Users
+Row -> Document
+  - Task => 
+
+Schema -> Model

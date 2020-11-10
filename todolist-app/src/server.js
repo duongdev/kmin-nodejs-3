@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const {
   createTask,
   getAllTasks,
@@ -6,6 +7,18 @@ const {
 } = require("./services/task-service");
 
 const PORT = process.env.PORT || 3000;
+
+mongoose.connect(
+  "mongodb+srv://kmin:zoh19q6cPkvagbV5@cluster0.izwd3.mongodb.net/golb?retryWrites=true&w=majority",
+  { useNewUrlParser: true }
+);
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  // we're connected!
+  console.log("Connected to MongoDB");
+});
 
 const app = express();
 app.use(express.json());
@@ -19,8 +32,12 @@ app
       return res.status(400).json({ message: "title is required" });
     }
 
-    const createdTask = createTask({ title, body });
-    res.json(createdTask);
+    createTask({ title, body }, (error, createdTask) => {
+      if (error) {
+        return res.send(error)
+      }
+      res.json(createdTask);
+    });
   })
   .get((req, res) => {
     res.json(getAllTasks());

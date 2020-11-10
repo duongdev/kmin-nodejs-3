@@ -2,5 +2,8 @@
   "scripts": {
     "install": "cd todolist-app && npm i",
     "start": "node todolist-app/src/server.js"
+  },
+  "dependencies": {
+    "mongoose": "^5.10.13"
   }
 }
