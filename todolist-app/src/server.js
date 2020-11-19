@@ -1,17 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const {
-  createTask,
-  getAllTasks,
-  findTaskById,
-} = require("./services/task-service");
+
+const router = require("./routes");
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(
-  "mongodb+srv://kmin:zoh19q6cPkvagbV5@cluster0.izwd3.mongodb.net/golb?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+mongoose.connect("mongodb://localhost:27017/todo", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -23,41 +20,29 @@ db.once("open", function () {
 const app = express();
 app.use(express.json());
 
-app
-  .route("/tasks")
-  .post((req, res) => {
-    const { title, body } = req.body;
+app.use("/", router);
 
-    if (!title) {
-      return res.status(400).json({ message: "title is required" });
-    }
+// app
+//   .route("/tasks")
+//   .post((req, res) => {
+//     const { title, body } = req.body;
 
-    createTask({ title, body }, (error, createdTask) => {
-      if (error) {
-        return res.send(error)
-      }
-      res.json(createdTask);
-    });
-  })
-  .get((req, res) => {
-    res.json(getAllTasks());
-  });
+//     if (!title) {
+//       return res.status(400).json({ message: "title is required" });
+//     }
 
-// app.post("/tasks", (req, res) => {
-//   const { title, body } = req.body;
-//   const createdTask = createTask({ title, body });
-//   res.json(createdTask);
-// });
+//     createTask({ title, body })
+//       .then((task) => res.json(task))
+//       .catch((error) => res.status(500).send(error));
+//   })
+//   .get((req, res) => {
+//     res.json(getAllTasks());
+//   });
 
-app.get("/tasks/:taskId", (req, res) => {
-  const task = findTaskById(req.params.taskId);
+// app.get("/tasks/:taskId", (req, res) => {
+//   const task = findTaskById(req.params.taskId);
 
-  res.json(task);
-});
-
-// Get all tasks
-// app.get("/tasks", (req, res) => {
-//   res.json(getAllTasks());
+//   res.json(task);
 // });
 
 app.listen(PORT, () => {

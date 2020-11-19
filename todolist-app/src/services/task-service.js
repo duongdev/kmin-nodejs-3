@@ -8,14 +8,11 @@ function getAllTasks() {
 }
 
 function createTask({ title, body }, callback) {
-  Task.create(
-    {
-      title,
-      body,
-      completed: false,
-    },
-    (err, task) => callback(err, task)
-  );
+  return Task.create({
+    title,
+    body,
+    completed: false,
+  });
 }
 
 function findTaskById(taskId) {
