@@ -22,29 +22,6 @@ app.use(express.json());
 
 app.use("/", router);
 
-// app
-//   .route("/tasks")
-//   .post((req, res) => {
-//     const { title, body } = req.body;
-
-//     if (!title) {
-//       return res.status(400).json({ message: "title is required" });
-//     }
-
-//     createTask({ title, body })
-//       .then((task) => res.json(task))
-//       .catch((error) => res.status(500).send(error));
-//   })
-//   .get((req, res) => {
-//     res.json(getAllTasks());
-//   });
-
-// app.get("/tasks/:taskId", (req, res) => {
-//   const task = findTaskById(req.params.taskId);
-
-//   res.json(task);
-// });
-
 app.listen(PORT, () => {
   console.log(`Todolist Server is running on http://localhost:${PORT}`);
 });
