@@ -4,6 +4,8 @@ const userService = require("../services/user-service");
 
 const router = Router({ mergeParams: true });
 
+const JWT_SECRET = "s3cr3t";
+
 // POST /users
 router.post("/", (req, res) => {
   const { username, password } = req.body;
@@ -55,9 +57,23 @@ router.post("/authentication", (req, res) => {
     })
     .then((user) => {
       console.log(user.toObject());
-      const token = jwt.sign(user.toObject(), "s3cr3t");
+      const token = jwt.sign(user.toObject(), JWT_SECRET);
       res.send(token);
     });
+});
+
+router.get("/authentication", (req, res) => {
+  const token = req.headers["x-token"];
+
+  try {
+    const encoded = jwt.verify(token, JWT_SECRET);
+
+    userService.findById(encoded._id).then((user) => {
+      res.json(user);
+    });
+  } catch (error) {
+    res.status(400).json({ message: "Invalid token" });
+  }
 });
 
 module.exports = router;

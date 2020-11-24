@@ -8,6 +8,10 @@ const findUserByUsername = (username) => {
   return User.findOne({ username: username }).exec();
 };
 
+const findById = (id) => {
+  return User.findById(id);
+};
+
 // const deleteUser = (userId) => {
 //     return Promise((resolve, reject) => {
 //         User.findById(userId).then((foundUser) => {
@@ -19,4 +23,4 @@ const findUserByUsername = (username) => {
 //     });
 // };
 
-module.exports = { createUser, findUserByUsername };
+module.exports = { createUser, findUserByUsername, findById };
