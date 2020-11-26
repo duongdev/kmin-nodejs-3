@@ -1,10 +1,9 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
+const { requireUser } = require("../middlewares/auth");
 const userService = require("../services/user-service");
 
 const router = Router({ mergeParams: true });
-
-const JWT_SECRET = "s3cr3t";
 
 // POST /users
 router.post("/", (req, res) => {
@@ -36,44 +35,8 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post("/authentication", (req, res) => {
-  const { username, password } = req.body;
-
-  // validate username & password
-  userService
-    .findUserByUsername(username)
-    .then((foundUser) => {
-      if (!foundUser) {
-        res.status(400).json({ message: `Username doesn't exist` });
-        return;
-      }
-
-      if (foundUser.password !== password) {
-        res.status(400).json({ message: `Wrong password` });
-        return;
-      }
-
-      return Promise.resolve(foundUser);
-    })
-    .then((user) => {
-      console.log(user.toObject());
-      const token = jwt.sign(user.toObject(), JWT_SECRET);
-      res.send(token);
-    });
-});
-
-router.get("/authentication", (req, res) => {
-  const token = req.headers["x-token"];
-
-  try {
-    const encoded = jwt.verify(token, JWT_SECRET);
-
-    userService.findById(encoded._id).then((user) => {
-      res.json(user);
-    });
-  } catch (error) {
-    res.status(400).json({ message: "Invalid token" });
-  }
+router.get("/authentication", requireUser, (req, res, next) => {
+  res.json(req.user);
 });
 
 module.exports = router;

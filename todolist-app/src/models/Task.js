@@ -13,6 +13,10 @@ const taskSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    require: true,
+  },
 });
 
 const Task = mongoose.model("Task", taskSchema);
