@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const router = require("./routes");
 
@@ -18,9 +19,11 @@ db.once("open", function () {
 });
 
 const app = express();
+
 app.use(express.json());
 
-app.use("/", router);
+app.use("/api", router);
+app.use(express.static(path.join(__dirname, "web")));
 
 app.listen(PORT, () => {
   console.log(`Todolist Server is running on http://localhost:${PORT}`);

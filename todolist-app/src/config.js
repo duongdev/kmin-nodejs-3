@@ -1,3 +1,3 @@
-const JWT_SECRET = "s3cr3t";
+const JWT_SECRET = "JWT_SECRET";
 
 module.exports = { JWT_SECRET };

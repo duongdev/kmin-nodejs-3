@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <div>Hello <span id="username">loading...</span></div>
+  </body>
+  <script>
+    const token = localStorage.getItem("token");
+
+    const getUser = async () => {
+      try {
+        const response = await fetch(`/api/users/authentication`, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            "x-token": token,
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer",
+        });
+
+        console.log(response.status);
+        if (response.status === 400) {
+          location.href = "/login.html";
+        }
+
+        const user = await response.json();
+
+        document.getElementById(
+          "username"
+        ).innerHTML = `<strong>${user.username}</strong>`;
+
+        console.log(user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getUser();
+  </script>
+</html>

@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <h1>Login</h1>
+    <form id="form">
+      <input id="username" />
+      <input id="password" type="password" />
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      async function login(e) {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const config = {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify({ username, password }), // body data type must match "Content-Type" header
+        };
+
+        // console.log(config);
+
+        const response = await fetch(`/api/users/authentication`, config);
+        // const data = await response.json();
+        const token = await response.text();
+
+        console.log(token)
+
+        localStorage.setItem('token', token);
+
+
+        location.href = "/tasks.html";
+
+        // console.log(data);
+      }
+
+      const form = document.getElementById("form");
+
+      form.addEventListener("submit", login);
+    </script>
+  </body>
+</html>
